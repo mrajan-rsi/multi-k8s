@@ -2,14 +2,13 @@ name: build_poi
 on:
   push:
     paths:
-      - "mrajan-rsi/multi-k8s/**"
+      - "multi-k8s/**"
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Azure Container Registry Build
         uses: ams0/acr-task-github-action@v2
-
         with:
           service_principal: ${{ secrets.REGISTRY_USERNAME }}
           service_principal_password: ${{ secrets.REGISTRY_PASSWORD }}
