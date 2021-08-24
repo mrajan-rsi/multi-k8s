@@ -15,7 +15,7 @@ jobs:
           #with:
             #creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-        - uses: azure/docker-login@v1
+          uses: azure/docker-login@v1
           with:
             login-server: devnextgen.azurecr.io
             username: ${{ secrets.REGISTRY_USERNAME }}
