@@ -2,7 +2,7 @@ name: build_poi
 on:
   push:
     branches: [master]
-jobs:
+jobs:s
   build:
     runs-on: ubuntu-latest
     steps:
