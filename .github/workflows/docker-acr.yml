@@ -23,3 +23,5 @@ jobs:
         - run: |
             docker build . -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+            
+            #
