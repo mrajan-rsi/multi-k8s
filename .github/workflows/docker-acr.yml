@@ -18,4 +18,4 @@ jobs:
           image: poi
           #git_access_token: ${{ secrets.git_access_token }}
           folder: mrajan-rsi/multi-k8s
-          #dockerfile: ../../dockerfiles/Dockerfile_3
+          #dockerfile: ../../dockerfiles/Dockerfile_33
