@@ -3,7 +3,7 @@ on:
   push:
     branches: [master]
 jobs:
-    build-and-deploy:
+    build:
         runs-on: ubuntu-latest
         steps:
         # checkout the repo
@@ -23,14 +23,3 @@ jobs:
         - run: |
             docker build . -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
-
-        - name: 'Deploy to Azure Container Instances'
-          uses: 'azure/aci-deploy@v1'
-          with:
-            resource-group: RSI-CE-DEV-NXG-RG
-            dns-name-label: url-for-container
-            image: devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
-            registry-username: ${{ secrets.REGISTRY_USERNAME }}
-            registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            name: contoso-container
-            location: 'Central US'
