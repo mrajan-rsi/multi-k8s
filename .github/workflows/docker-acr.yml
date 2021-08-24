@@ -1,8 +1,7 @@
 name: build_poi
 on:
   push:
-    paths:
-      - "multi-k8s/**"
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest
