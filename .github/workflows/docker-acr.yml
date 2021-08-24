@@ -1,20 +1,36 @@
-name: build_poi
+name: build_poc
 on:
   push:
     branches: [master]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Azure Container Registry Build
-        uses: ams0/acr-task-github-action@v2
-        with:
-          service_principal: ${{ secrets.REGISTRY_USERNAME }}
-          service_principal_password: ${{ secrets.REGISTRY_PASSWORD }}
-          tenant: ${{ secrets.TENANT }}
-          registry: ${{ secrets.REGISTRY }}
-          repository: ${{ secrets.REPOSITORY }}
-          image: poi
-          #git_access_token: ${{ secrets.git_access_token }}
-          folder: mrajan-rsi/multi-k8s
-          #dockerfile: ../../dockerfiles/Dockerfile_33
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+        # checkout the repo
+        - name: 'Checkout GitHub Action'
+          uses: actions/checkout@master
+          
+        - name: 'Login via Azure CLI'
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+        - uses: azure/docker-login@v1
+          with:
+            login-server: devnextgen.azurecr.io
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+        - run: |
+            docker build . -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+            docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+
+        - name: 'Deploy to Azure Container Instances'
+          uses: 'azure/aci-deploy@v1'
+          with:
+            resource-group: RSI-CE-DEV-NXG-RG
+            dns-name-label: url-for-container
+            image: devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+            registry-username: ${{ secrets.REGISTRY_USERNAME }}
+            registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+            name: contoso-container
+            location: 'Central US'
