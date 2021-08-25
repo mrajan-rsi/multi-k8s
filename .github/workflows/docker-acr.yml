@@ -21,6 +21,11 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            #docker build ./client -t multi-k8s-client:${{ github.sha }}
-            docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
-            docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+            #docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+            #docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
+            docker build ./client -t devnextgen.azurecr.io/client:v1
+            docker push devnextgen.azurecr.io/client:v1
+            docker build ./server -t devnextgen.azurecr.io/server:v1
+            docker push devnextgen.azurecr.io/server:v1
+            docker build ./worker -t devnextgen.azurecr.io/worker:v1
+            docker push devnextgen.azurecr.io/worker:v1
