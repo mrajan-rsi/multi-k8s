@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "rsicedevnxgaks-442d"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "rsicedevnxgaks-442d"
+  template:
+    metadata:
+      labels:
+        app: "rsicedevnxgaks-442d"
+    spec:
+      containers:
+        - name: "rsicedevnxgaks-442d"
+          image: "devnextgen.azurecr.io/rsicedevnxgaks"
+          ports:
+          - containerPort: 3000
