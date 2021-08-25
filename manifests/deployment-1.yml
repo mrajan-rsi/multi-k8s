@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "rsicedevnxgaks-cf44"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "rsicedevnxgaks-cf44"
+  template:
+    metadata:
+      labels:
+        app: "rsicedevnxgaks-cf44"
+    spec:
+      containers:
+        - name: "rsicedevnxgaks-cf44"
+          image: "devnextgen.azurecr.io/rsicedevnxgaks"
+          ports:
+          - containerPort: 80
