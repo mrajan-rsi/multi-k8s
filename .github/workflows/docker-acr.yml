@@ -24,3 +24,4 @@ jobs:
             #docker build ./client -t multi-k8s-client:${{ github.sha }}
             docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             docker push devnextgen.azurecr.io/multi-k8s-client:${{ github.sha }}
+            #
