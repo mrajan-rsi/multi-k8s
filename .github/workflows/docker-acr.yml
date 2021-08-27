@@ -29,3 +29,4 @@ jobs:
             docker push devnextgen.azurecr.io/server:v1
             docker build ./worker -t devnextgen.azurecr.io/worker:v1
             docker push devnextgen.azurecr.io/worker:v1
+#test
