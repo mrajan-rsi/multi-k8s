@@ -33,16 +33,16 @@ jobs:
             docker build ./worker -t devnextgen.azurecr.io/worker:v1
             docker push devnextgen.azurecr.io/worker:v1
             
-      deploy:   
-        - uses: azure/k8s-deploy@v1.2
-          with:
-            namespace: default
-            manifests: |
-              manifests/deployment.yml
-              manifests/service.yml
-            images: |
-              devnextgen.azurecr.io/rsicedevnxgaks:${{ github.sha }}
-            imagepullsecrets: |
-              rsicedevnxgadockerauth
+  deploy:   
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: default
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        images: |
+          devnextgen.azurecr.io/rsicedevnxgaks:${{ github.sha }}
+        imagepullsecrets: |
+          rsicedevnxgadockerauth
           
 #test
