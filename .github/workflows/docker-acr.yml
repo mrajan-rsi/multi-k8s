@@ -52,14 +52,15 @@ jobs:
     deploy:
         needs: build
         runs-on: ubuntu-latest
+        environment: DEV
         steps:
         - name: 'Deploy to AKS'
           uses: azure/k8s-deploy@v1.2
           with:
             namespace: default
             manifests: |
-              .k8s/client-deployment.yaml
-              .k8s/client-service.yaml
+              .k8s/client-deployment.yml
+              .k8s/client-service.yml
             images: |
               devnextgen.azurecr.io/client:v1
             imagepullsecrets: |
