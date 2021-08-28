@@ -37,15 +37,16 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
-          - uses: azure/k8s-deploy@v1.2
-            with:
-              namespace: default
-              manifests: |
-                k8s/client-deployment.yml
-                k8s/client-service.yml
-              images: |
-                devnextgen.azurecr.io/client:v1
-              imagepullsecrets: |
-                rsicedevnxgadockerauth
+        - name: 'Deploy to AKS'
+          uses: azure/k8s-deploy@v1.2
+          with:
+            namespace: default
+            manifests: |
+              k8s/client-deployment.yml
+              k8s/client-service.yml
+            images: |
+              devnextgen.azurecr.io/client:v1
+            imagepullsecrets: |
+              rsicedevnxgadockerauth
           
 #test
