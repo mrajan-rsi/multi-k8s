@@ -29,6 +29,26 @@ jobs:
             docker build ./worker -t devnextgen.azurecr.io/worker:v1
             docker push devnextgen.azurecr.io/worker:v1
             
+        - uses: azure/k8s-set-context@v1
+          with:
+            kubeconfig: ${{ secrets.aks_rsicedevnxgaks_kubeConfig }}
+          id: login
+    
+        - name: Create namespace
+          run: |
+            namespacePresent=`kubectl get namespace | grep default | wc -l`
+            if [ $namespacePresent -eq 0 ]
+            then
+              echo `kubectl create namespace default`
+            fi
+        - uses: azure/k8s-create-secret@v1
+          with:
+            namespace: default
+            container-registry-url: devnextgen.azurecr.io
+            container-registry-username: ${{ secrets.acr_devnextgen_username }}
+            container-registry-password: ${{ secrets.acr_devnextgen_password }}
+            secret-name: rsicedevnxgadockerauth
+            
     deploy:
         needs: build
         runs-on: ubuntu-latest
@@ -38,11 +58,11 @@ jobs:
           with:
             namespace: default
             manifests: |
-              k8s/client-deployment.yaml
-              k8s/client-service.yaml
+              .k8s/client-deployment.yaml
+              .k8s/client-service.yaml
             images: |
               devnextgen.azurecr.io/client:v1
-            #imagepullsecrets: |
-              #rsicedevnxgadockerauth
+            imagepullsecrets: |
+              rsicedevnxgadockerauth
           
 #test
