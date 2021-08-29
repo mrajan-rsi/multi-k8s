@@ -6,6 +6,7 @@ on:
     #- '.github/workflows/**'..
     - 'manifests/**'
     - 'k8s/**'
+    
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -53,7 +54,9 @@ jobs:
             container-registry-username: ${{ secrets.acr_devnextgen_username }}
             container-registry-password: ${{ secrets.acr_devnextgen_password }}
             secret-name: rsicedevnxgadockerauth
-            
+    
+
+    
     deploy_dev:
         needs: build
         runs-on: ubuntu-latest
@@ -63,6 +66,7 @@ jobs:
           #AKS_APP_NAMESPACE: ${{ github.event.deployment.environment }}
           ACR_APP_IMAGE: ${{ secrets.ACR }} #/${{ needs.deploy_details.outputs.app_container_image }} # e.g. ACR = 'akscicddevacrb1ce1.azurecr.io'
           #ACR_APP_IMAGE_TAG: ${{ needs.deploy_details.outputs.app_container_version }}
+          WORKING-DIECTORY: ./k8s
           
         steps:
           - uses: actions/checkout@master
@@ -74,7 +78,6 @@ jobs:
             run: az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_NAME }} --overwrite-existing --admin
             shell: bash
           - name: Run kubectl
-            working-directory: k8s
-            run: kubectl apply -f k8s
+            run: kubectl apply -f ${{ env.WORKING-DIECTORY }}
             env:
               AZURE_CREDENTIALS: ${{ secrets.AZURE_SUBSCRIPTION }}
