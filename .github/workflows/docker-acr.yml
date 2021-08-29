@@ -11,12 +11,13 @@ jobs:
           uses: actions/checkout@master
           
         - name: 'Login via Azure CLI'       
-          uses: azure/docker-login@v1
+          uses: Azure/login@v1
           with:
-            login-server: devnextgen.azurecr.io
-            username: ${{ secrets.REGISTRY_USERNAME }}
-            password: ${{ secrets.REGISTRY_PASSWORD }}
-        
+            creds: ${{ secrets.AZURE_SUBSCRIPTION }}
+        - name: ACR Login
+          run: |
+            az acr login --name ${{ secrets.ACR }}
+            
         - name: Build and push image to ACR
           id: build-image
           run: | 
