@@ -49,23 +49,27 @@ jobs:
             container-registry-password: ${{ secrets.acr_devnextgen_password }}
             secret-name: rsicedevnxgadockerauth
             
-    #deploy:
-        #needs: build
-        #runs-on: ubuntu-latest
-        #environment: DEV
-        #steps:
-        #- name: 'Deploy to AKS'
-        - uses: azure/k8s-deploy@v1.2
-          with:
-            namespace: default
-            manifests: |
-              k8s/client-deployment.yml
-<<<<<<< HEAD
-              k8s/client-service.yml
-=======
-              k8s/client-cluster-ip-service.yml
->>>>>>> 2384879cc3102bde68ed4f2577196a0528547cdb
-            images: |
-              devnextgen.azurecr.io/client
-            imagepullsecrets: |
-              rsicedevnxgadockerauth
+    deploy_dev:
+        needs: build
+        runs-on: ubuntu-latest
+        env:
+          AKS_RESOURCE_GROUP: ${{ secrets.AKS_RESOURCE_GROUP }} # e.g. 'aks_cicd_dev_rg'
+          AKS_NAME: ${{ secrets.AKS_NAME }} # e.g. 'akscicddev-aks-b1ce1'
+          AKS_APP_NAMESPACE: ${{ github.event.deployment.environment }}
+          ACR_APP_IMAGE: ${{ secrets.ACR }}/${{ needs.deploy_details.outputs.app_container_image }} # e.g. ACR = 'akscicddevacrb1ce1.azurecr.io'
+          ACR_APP_IMAGE_TAG: ${{ needs.deploy_details.outputs.app_container_version }}
+          
+        steps:
+          - uses: actions/checkout@master
+          - name: Azure Login
+            uses: Azure/login@v1
+            with:
+              creds: ${{ secrets.AZURE_SUBSCRIPTION }}
+          - name: AZ AKS Login
+            run: az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_NAME }} --overwrite-existing --admin
+            shell: bash
+          - name: Run kubectl
+            working-directory: k8s
+            run: kubectl apply -f k8s
+            env:
+              AZURE_CREDENTIALS: ${{ secrets.AZURE_SUBSCRIPTION }}
