@@ -49,21 +49,23 @@ jobs:
             container-registry-password: ${{ secrets.acr_devnextgen_password }}
             secret-name: rsicedevnxgadockerauth
             
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        environment: DEV
-        steps:
-        - name: 'Deploy to AKS'
-          uses: azure/k8s-deploy@v1.2
+    #deploy:
+        #needs: build
+        #runs-on: ubuntu-latest
+        #environment: DEV
+        #steps:
+        #- name: 'Deploy to AKS'
+        - uses: azure/k8s-deploy@v1.2
           with:
             namespace: default
             manifests: |
               k8s/client-deployment.yml
+<<<<<<< HEAD
               k8s/client-service.yml
+=======
+              k8s/client-cluster-ip-service.yml
+>>>>>>> 2384879cc3102bde68ed4f2577196a0528547cdb
             images: |
               devnextgen.azurecr.io/client
             imagepullsecrets: |
               rsicedevnxgadockerauth
-          
-#test
