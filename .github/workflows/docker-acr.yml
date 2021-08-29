@@ -59,10 +59,10 @@ jobs:
           with:
             namespace: default
             manifests: |
-              .k8s/client-deployment.yml
-              .k8s/client-service.yml
+              k8s/client-deployment.yml
+              k8s/client-service.yml
             images: |
-              devnextgen.azurecr.io/client:v1
+              devnextgen.azurecr.io/client
             imagepullsecrets: |
               rsicedevnxgadockerauth
           

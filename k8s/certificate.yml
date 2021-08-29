@@ -2,13 +2,13 @@ apiVersion: cert-manager.io/v1
 
 kind: Certificate
 metadata:
-  name: yourdomain-com-tls
+  name: multik8s-com-tls
 spec:
-  secretName: yourdomain-com
+  secretName: multik8s-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: yourdomain.com
+  commonName: multik8s.com
   dnsNames:
-    - yourdomain.com
-    - www.yourdomain.com
+    - multik8s.com
+    - www.multik8s.com
