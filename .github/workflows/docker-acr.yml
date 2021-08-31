@@ -5,7 +5,7 @@ on:
     paths-ignore:
     #- '.github/workflows/**'..
     #- 'manifests/**'
-    #- 'k8s/**'
+    - 'k8s/**'
     
 jobs:
     build:
