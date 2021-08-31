@@ -5,10 +5,14 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: "test@test.com"
+    email: "mrajan@rsimail.com
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
       - http01:
           ingress:
             class: nginx
+            podTemplate:
+            spec:
+              nodeSelector:
+                "kubernetes.io/os": linux
