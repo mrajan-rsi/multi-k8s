@@ -3,9 +3,9 @@ on:
   push:
     branches: [master]
     paths-ignore:
-    #- '.github/workflows/**'..
+    #- '.github/workflows/**'...
     #- 'manifests/**'
-    - 'k8s/**'
+    #- 'k8s/**'
     
 jobs:
     build:
