@@ -4,8 +4,8 @@ on:
     branches: [master]
     paths-ignore:
     #- '.github/workflows/**'..
-    - 'manifests/**'
-    - 'k8s/**'
+    #- 'manifests/**'
+    #- 'k8s/**'
     
 jobs:
     build:
