@@ -65,7 +65,7 @@ jobs:
           ACR_APP_IMAGE: ${{ secrets.ACR }} #/${{ needs.deploy_details.outputs.app_container_image }} # e.g. ACR = 'akscicddevacrb1ce1.azurecr.io'
           #ACR_APP_IMAGE_TAG: ${{ needs.deploy_details.outputs.app_container_version }}
           WORKING-DIECTORY: ./k8s
-          
+         # 
         steps:
           - uses: actions/checkout@master
           - name: Azure Login
