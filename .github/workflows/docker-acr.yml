@@ -2,10 +2,10 @@ name: build_poc
 on:
   push:
     branches: [master]
-    #paths-ignore:
+    paths-ignore:
     #- '.github/workflows/**'...
-    #- 'manifests/**'
-    #- 'k8s/**'
+    - 'manifests/**'
+    - 'k8s/**'
     
 jobs:
     build:
@@ -28,8 +28,8 @@ jobs:
           run: | 
             #docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             #docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
-            docker build ./client -t devnextgen.azurecr.io/client:${{ github.sha }}
-            docker push devnextgen.azurecr.io/client:${{ github.sha }}
+            docker build ./client -t devnextgen.azurecr.io/client:v1
+            docker push devnextgen.azurecr.io/client:v1
             docker build ./server -t devnextgen.azurecr.io/server:${{ github.sha }}
             docker push devnextgen.azurecr.io/server:${{ github.sha }}
             docker build ./worker -t devnextgen.azurecr.io/worker:${{ github.sha }}
