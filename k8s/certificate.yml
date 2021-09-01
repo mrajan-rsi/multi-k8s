@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1
+apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
   name: multik8s-com-tls
@@ -11,3 +11,10 @@ spec:
   dnsNames:
     - multik8s.com
     - www.multik8s.com
+  acme:
+    config:
+      -http01:
+         ingressClass: nginx
+       domains:
+         - multik8s.com
+         - www.multik8s.com
