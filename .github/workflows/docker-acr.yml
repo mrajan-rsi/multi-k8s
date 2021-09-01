@@ -28,12 +28,12 @@ jobs:
           run: | 
             #docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             #docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
-            docker build ./client -t devnextgen.azurecr.io/client:v1
-            docker push devnextgen.azurecr.io/client:v1
-            docker build ./server -t devnextgen.azurecr.io/server:v1
-            docker push devnextgen.azurecr.io/server:v1
-            docker build ./worker -t devnextgen.azurecr.io/worker:v1
-            docker push devnextgen.azurecr.io/worker:v1
+            #docker build ./client -t devnextgen.azurecr.io/client:v1
+            #docker push devnextgen.azurecr.io/client:v1
+            #docker build ./server -t devnextgen.azurecr.io/server:v1
+            #docker push devnextgen.azurecr.io/server:v1
+            #docker build ./worker -t devnextgen.azurecr.io/worker:v1
+            #docker push devnextgen.azurecr.io/worker:v1
             
         - uses: azure/k8s-set-context@v1
           with:
