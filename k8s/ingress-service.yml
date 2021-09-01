@@ -13,7 +13,7 @@ spec:
     - hosts:
         - multik8s.com
         - www.multik8s.com
-      secretName: multik8s-com
+      secretName: multik8s-com-sfdrg
   rules:
     - host: multik8s.com
       http:
