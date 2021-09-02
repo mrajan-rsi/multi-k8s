@@ -10,7 +10,6 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Fib Calculator!!!</h1>
           <img src={logo} className="App-logo" alt="logo" />
           <a
             className="App-link"
@@ -20,6 +19,7 @@ function App() {
           >
             Learn React 3
           </a>
+          <h1 className="App-title">Fib Calculator!!!</h1>
           <Link to="/">My Home</Link>
           <Link to="/otherpage">Other Page</Link>
         </header>
