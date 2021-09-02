@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: "devnextgen.azurecr.io/client:v1"
+          image: "devnextgen.azurecr.io/client:${{ github.sha }}"
           ports:
             - containerPort: 3000
