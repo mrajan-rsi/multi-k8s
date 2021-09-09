@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: "devnextgen.azurecr.io/server:${{ github.sha }}"
+          image: "devnextgen.azurecr.io/server"
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
