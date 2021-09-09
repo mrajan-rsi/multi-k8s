@@ -20,7 +20,7 @@ function App() {
             Learn React 3
           </a>
           <h1 className="App-title">Fib Calculator!!!</h1>
-          <Link to="/">Home</Link>
+          <Link to="/">Test Home</Link>
           <Link to="/otherpage">Other Page</Link>
         </header>
         <div>
