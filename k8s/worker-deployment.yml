@@ -15,6 +15,7 @@ spec:
       containers:
         - name: worker
           image: "devnextgen.azurecr.io/worker:${{ github.sha }}"
+          imagePullPolicy: Always
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
