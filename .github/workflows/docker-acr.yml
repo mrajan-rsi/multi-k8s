@@ -28,8 +28,8 @@ jobs:
           run: | 
             #docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             #docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
-            docker build ./client -t devnextgen.azurecr.io/client
-            docker push devnextgen.azurecr.io/client
+            docker build ./client -t devnextgen.azurecr.io/client:${{ github.sha }}
+            docker push devnextgen.azurecr.io/client:${{ github.sha }}
             docker build ./server -t devnextgen.azurecr.io/server:${{ github.sha }}
             docker push devnextgen.azurecr.io/server:${{ github.sha }}
             docker build ./worker -t devnextgen.azurecr.io/worker:${{ github.sha }}
