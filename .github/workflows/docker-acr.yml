@@ -26,7 +26,7 @@ jobs:
         - name: Build and push image to ACR
           id: build-image
           run: | 
-            #docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}..
+            #docker build ./client -t devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}...
             #docker push devnextgen.azurecr.io/nodejssampleapp:${{ github.sha }}
             docker build ./client -t devnextgen.azurecr.io/client
             docker push devnextgen.azurecr.io/client
