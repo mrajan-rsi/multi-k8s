@@ -1,0 +1,26 @@
+name: UploadArtifact
+on:
+  #[push]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: npm install,yarn install & build
+        run: |
+          npm install
+          npm build
+      - name: WebUI
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build-Output
+          path: |
+            build
+            #!dist/**/*.md
+      #- name: Archive code coverage results
+        #uses: actions/upload-artifact@v2
+        #with:
+          #name: code-coverage-report
+          #path: output/test/code-coverage.html
