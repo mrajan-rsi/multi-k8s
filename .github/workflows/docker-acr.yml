@@ -10,6 +10,17 @@ on:
   workflow_dispatch:
     
 jobs:
+    download:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Artifact-Download
+          uses: actions/download-artifact@v2
+          with:
+            name: Build-Output
+        - name: List-Artifact-Download
+          shell: bash
+          run: |
+            ls -la
     build:
         runs-on: ubuntu-latest
         steps:
