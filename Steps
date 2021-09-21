@@ -1,0 +1,14 @@
+ 1) Run below command to attach aks & acr first
+ 
+ az aks update -n RSI-CE-DEV-NXG-AKS -g RSI-CE-DEV-NXG-RG --attach-acr devnextgen
+
+ 2) Set the context to run any future commands on specific aks
+
+az aks get-credentials --resource-group RSI-CE-DEV-NXG-RG --name RSI-CE-DEV-NXG-AKS
+
+3) Run to create an app reg and copy the output for env variable
+
+az ad sp create-for-rbac -n "GitHub workflow aks-cicd-enterprise" --role Owner --scopes /subscriptions/000117e3-d9eb-4084-8233-e90cd78d6149 --sdk-auth
+
+4) 
+
