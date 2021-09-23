@@ -114,3 +114,8 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
 10) Create cluster Issuer config file
 
 11) Create cert config file
+
+12) Bridge to kubernetes.io/ingress.class
+
+C:\Users\MANOJR~1\AppData\Local\Temp\tmp-148zquAZGfrRcq3.env.cmd 
+
