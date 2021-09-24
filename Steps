@@ -119,3 +119,5 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
 
 C:\Users\MANOJR~1\AppData\Local\Temp\tmp-148zquAZGfrRcq3.env.cmd 
 
+az aks get-credentials --name RSI-CE-DEV-NXG-AKS --resource-group RSI-CE-DEV-NXG-RG
+
