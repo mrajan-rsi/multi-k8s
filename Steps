@@ -8,7 +8,9 @@ az aks get-credentials --resource-group RSI-CE-DEV-NXG-RG --name RSI-CE-DEV-NXG-
 
 3) Run to create an app reg and copy the output for env variable
 
-az ad sp create-for-rbac -n "GitHub workflow aks-cicd-enterprise" --role Owner --scopes /subscriptions/000117e3-d9eb-4084-8233-e90cd78d6149 --sdk-auth
+env.AZURE_SUBSCRIPTION = az ad sp create-for-rbac -n "GitHub workflow aks-cicd-enterprise" --role Owner --scopes /subscriptions/000117e3-d9eb-4084-8233-e90cd78d6149 --sdk-auth
+
+env.ACR = az acr login -n devnextgen --expose-token
 
 4) kubectl config get-contexts - to list all aks
 
@@ -16,7 +18,7 @@ az ad sp create-for-rbac -n "GitHub workflow aks-cicd-enterprise" --role Owner -
 
 6) git clone --branch <branch name> <git repo url> - to clone specific branch to local
 
-7) kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
+7) kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.2/deploy/static/provider/cloud/deploy.yaml
 
 created below items
 
